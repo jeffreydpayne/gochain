@@ -54,3 +54,18 @@ func TestDoubleRipemd160(t *testing.T) {
 	}
 
 }
+
+func TestMerkleHash(t *testing.T) {
+
+	h1 := gochain.DoubleHash("The quick brown fox ")
+	h2 := gochain.DoubleHash("jumped over the lazy dog")
+
+	merkleHash := gochain.MerkleHash(h1, h2)
+
+	t.Log("Merkle Hash: " + merkleHash)
+
+	if len(merkleHash) == 0 {
+		t.Error("Empty merkle hash.")
+	}
+
+}

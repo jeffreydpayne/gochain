@@ -45,3 +45,20 @@ func RIPEMD_160_With_SHA_256(contents string) string {
 	return hex.EncodeToString(second.Sum(nil))
 
 }
+
+func MerkleHash(h1 string, h2 string) string {
+
+	first := sha256.New()
+
+	b1, _ := hex.DecodeString(h1)
+	b2, _ := hex.DecodeString(h2)
+
+	first.Write(b1)
+	first.Write(b2)
+
+	second := sha256.New()
+	second.Write(first.Sum(nil))
+
+	return hex.EncodeToString(second.Sum(nil))
+
+}
